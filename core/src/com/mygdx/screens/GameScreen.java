@@ -2,41 +2,49 @@ package com.mygdx.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.mygdx.gameworld.GameRenderer;
 import com.mygdx.gameworld.GameWorld;
+import com.mygdx.zbHelpers.InputHandler;
+
 
 /**
  * Created by njerry on 7/27/15.
  */
 public class GameScreen implements Screen{
+    private float runTime;
 
     private GameWorld world;
     private GameRenderer renderer;
 
     public GameScreen () {
-        Gdx.app.log("GameScreen", "Attached");
-        world = new GameWorld();
-        renderer = new GameRenderer(world);
-    }
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
+        float gameWidth = 136;
+        float gameHeight = screenHeight / (screenWidth / gameWidth);
 
-    @Override
-    public void show() {
-        Gdx.app.log("GameScreen", "show called");
+        int midPointY = (int) (gameHeight / 2);
+
+        world = new GameWorld(midPointY);
+        renderer = new GameRenderer(world, (int) gameHeight, midPointY);
+
+        Gdx.input.setInputProcessor(new InputHandler(world.getBird()));
     }
 
     @Override
     public void render(float delta) {
-//        Gdx.gl.glClearColor(10/255.0f, 15/255.0f, 230/255.0f, 1f);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        Gdx.app.log("GameScreen FPS", (1/delta + ""));
+        runTime += delta;
         world.update(delta);
-        renderer.render();
+        renderer.render(runTime);
     }
 
     @Override
     public void resize(int width, int height) {
         Gdx.app.log("GameScreen", "resizing");
+    }
+
+    @Override
+    public void show() {
+        Gdx.app.log("GameScreen", "show called");
     }
 
     @Override
