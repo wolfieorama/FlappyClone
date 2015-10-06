@@ -1,8 +1,6 @@
 package com.mygdx.gameworld;
 
 import com.mygdx.gameobjects.Bird;
-import com.mygdx.gameobjects.Grass;
-import com.mygdx.gameobjects.Pipe;
 import com.mygdx.gameobjects.ScrollHandler;
 
 /**
@@ -15,7 +13,7 @@ public class GameWorld {
     public GameWorld (int midPointY) {
         bird = new Bird(33, midPointY -5, 17, 12);
 
-        scroller = new ScrollHandler(midPointY - 66);
+        scroller = new ScrollHandler(midPointY + 66);
     }
 
     public void update (float delta) {

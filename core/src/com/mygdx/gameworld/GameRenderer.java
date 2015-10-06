@@ -57,58 +57,6 @@ public class GameRenderer {
         initAssets();
     }
 
-    public void render(float runTime) {
-
-        // Fill the entire screen with black, to prevent potential flickering.
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        // Begin ShapeRenderer
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-
-        // Draw Background color
-        shapeRenderer.setColor(55 / 255.0f, 80 / 255.0f, 100 / 255.0f, 1);
-        shapeRenderer.rect(0, 0, 136, midPointY + 66);
-
-        // Draw Grass
-        shapeRenderer.setColor(111 / 255.0f, 186 / 255.0f, 45 / 255.0f, 1);
-        shapeRenderer.rect(0, midPointY + 66, 136, 11);
-
-        // Draw Dirt
-        shapeRenderer.setColor(147 / 255.0f, 80 / 255.0f, 27 / 255.0f, 1);
-        shapeRenderer.rect(0, midPointY + 77, 136, 52);
-
-        // End ShapeRenderer
-        shapeRenderer.end();
-
-        // Begin SpriteBatch
-        batcher.begin();
-        // Disable transparency
-        // This is good for performance when drawing images that do not require
-        // transparency.
-        batcher.disableBlending();
-        batcher.draw(bg, 0, midPointY + 23, 136, 43);
-
-        // The bird needs transparency, so we enable that again.
-        batcher.enableBlending();
-
-        if (bird.shouldntFlap()) {
-            batcher.draw(birdMid, bird.getX(), bird.getY(),
-                    bird.getWidth() / 2.0f, bird.getHeight() / 2.0f,
-                    bird.getWidth(), bird.getHeight(), 1, 1, bird.getRotation());
-
-        } else {
-            batcher.draw(birdAnimation.getKeyFrame(runTime), bird.getX(),
-                    bird.getY(), bird.getWidth() / 2.0f,
-                    bird.getHeight() / 2.0f, bird.getWidth(), bird.getHeight(),
-                    1, 1, bird.getRotation());
-        }
-
-        // End SpriteBatch
-        batcher.end();
-
-    }
-
     private void initGameObjects() {
         bird = myWorld.getBird();
         scroller = myWorld.getScroller();
@@ -176,5 +124,66 @@ public class GameRenderer {
                 pipe3.getHeight());
         batcher.draw(bar, pipe3.getX(), pipe3.getY() + pipe3.getHeight() + 45,
                 pipe3.getWidth(), midPointY + 66 - (pipe3.getHeight() + 45));
+    }
+
+    public void render(float runTime) {
+
+        // Fill the entire screen with black, to prevent potential flickering.
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        // Begin ShapeRenderer
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+        // Draw Background color
+        shapeRenderer.setColor(55 / 255.0f, 80 / 255.0f, 100 / 255.0f, 1);
+        shapeRenderer.rect(0, 0, 136, midPointY + 66);
+
+        // Draw Grass
+        shapeRenderer.setColor(111 / 255.0f, 186 / 255.0f, 45 / 255.0f, 1);
+        shapeRenderer.rect(0, midPointY + 66, 136, 11);
+
+        // Draw Dirt
+        shapeRenderer.setColor(147 / 255.0f, 80 / 255.0f, 27 / 255.0f, 1);
+        shapeRenderer.rect(0, midPointY + 77, 136, 52);
+
+        // End ShapeRenderer
+        shapeRenderer.end();
+
+        // Begin SpriteBatch
+        batcher.begin();
+        // Disable transparency
+        // This is good for performance when drawing images that do not require
+        // transparency.
+        batcher.disableBlending();
+        batcher.draw(bg, 0, midPointY + 23, 136, 43);
+
+        //draw grass
+        drawGrass();
+
+        //draw pipes
+        drawPipes();
+
+        // The bird needs transparency, so we enable that again.
+        batcher.enableBlending();
+
+        //draw skulls
+        drawSkulls();
+
+        if (bird.shouldntFlap()) {
+            batcher.draw(birdMid, bird.getX(), bird.getY(),
+                    bird.getWidth() / 2.0f, bird.getHeight() / 2.0f,
+                    bird.getWidth(), bird.getHeight(), 1, 1, bird.getRotation());
+
+        } else {
+            batcher.draw(birdAnimation.getKeyFrame(runTime), bird.getX(),
+                    bird.getY(), bird.getWidth() / 2.0f,
+                    bird.getHeight() / 2.0f, bird.getWidth(), bird.getHeight(),
+                    1, 1, bird.getRotation());
+        }
+
+        // End SpriteBatch
+        batcher.end();
+
     }
 }
