@@ -64,10 +64,14 @@ public class AssetLoader {
         coin = Gdx.audio.newSound(Gdx.files.internal("data/coin.wav"));
 
         font = new BitmapFont(Gdx.files.internal("data/shadow.fnt"));
-        font.setScale(.25f, -.25f);
+        font = setScale(.25f, -.25f);
         shadow =  new BitmapFont(Gdx.files.internal("data/shadow.fnt"));
         shadow = setScale(.25f, -.25f);
 
+    }
+
+    private static BitmapFont setScale(float v, float v1) {
+        return null;
     }
 
     public static void dispose() {
