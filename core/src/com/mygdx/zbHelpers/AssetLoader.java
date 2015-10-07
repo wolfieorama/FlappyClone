@@ -24,7 +24,8 @@ public class AssetLoader {
     public static Sound flap;
     public static Sound coin;
 
-    public static BitmapFont font, shadow;
+    public static BitmapFont font;
+    public static BitmapFont shadow;
 
 
     public static void load() {
@@ -63,15 +64,10 @@ public class AssetLoader {
         flap = Gdx.audio.newSound(Gdx.files.internal("data/flap.wav"));
         coin = Gdx.audio.newSound(Gdx.files.internal("data/coin.wav"));
 
-        font = new BitmapFont(Gdx.files.internal("data/shadow.fnt"));
-        font = setScale(.25f, -.25f);
+        font = new BitmapFont(Gdx.files.internal("data/text.fnt"));
+        font.getData().setScale(.25f, -.25f);
         shadow =  new BitmapFont(Gdx.files.internal("data/shadow.fnt"));
-        shadow = setScale(.25f, -.25f);
-
-    }
-
-    private static BitmapFont setScale(float v, float v1) {
-        return null;
+        shadow.getData().setScale(.25f, -.25f);
     }
 
     public static void dispose() {
