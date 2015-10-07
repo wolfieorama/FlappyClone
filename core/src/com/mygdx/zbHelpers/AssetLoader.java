@@ -20,6 +20,8 @@ public class AssetLoader {
     public static TextureRegion skullUp, skullDown, bar;
 
     public static Sound dead;
+    public static Sound flap;
+    public static Sound coin;
 
 
     public static void load() {
@@ -55,11 +57,17 @@ public class AssetLoader {
         bar.flip(false, true);
 
         dead = Gdx.audio.newSound(Gdx.files.internal("data/dead.wav"));
+        flap = Gdx.audio.newSound(Gdx.files.internal("data/flap.wav"));
+        coin = Gdx.audio.newSound(Gdx.files.internal("data/coin.wav"));
 
     }
 
     public static void dispose() {
         // We must dispose of the texture when we are finished.
         texture.dispose();
+        //dispose of the Sound objects when done with them
+        dead.dispose();
+        flap.dispose();
+        coin.dispose();
     }
 }
