@@ -24,7 +24,7 @@ public class AssetLoader {
 
     public static void load() {
 
-        texture = new Texture(Gdx.files.internal("texture2.png"));
+        texture = new Texture(Gdx.files.internal("data/texture2.png"));
         texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
 
         bg = new TextureRegion(texture, 0, 0, 136, 43);
@@ -54,7 +54,7 @@ public class AssetLoader {
         bar = new TextureRegion(texture, 136, 16, 22, 3);
         bar.flip(false, true);
 
-        dead = Gdx.audio.newSound(Gdx.files.internal("dead.wav"));
+        dead = Gdx.audio.newSound(Gdx.files.internal("data/dead.wav"));
 
     }
 
