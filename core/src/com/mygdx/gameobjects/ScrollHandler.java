@@ -1,10 +1,15 @@
 package com.mygdx.gameobjects;
 
+import com.badlogic.gdx.Game;
+import com.mygdx.gameworld.GameWorld;
+import com.mygdx.zbHelpers.AssetLoader;
+
 /**
  * Created by njerry on 8/9/15.
  */
 public class ScrollHandler {
 
+    private GameWorld gameWorld;
     private Grass frontGrass, backGrass;
     private Pipe pipe1, pipe2, pipe3;
 
@@ -18,7 +23,8 @@ public class ScrollHandler {
 
     // Constructor receives a float that tells us where we need to create our
     // Grass and Pipe objects.
-    public ScrollHandler(float yPos) {
+    public ScrollHandler(GameWorld gameWorld, float yPos) {
+        this.gameWorld = gameWorld;
         frontGrass = new Grass(0, yPos, 143, 11, SCROLL_SPEED);
         backGrass = new Grass(frontGrass.getTailX(), yPos, 143, 11, SCROLL_SPEED);
 
@@ -66,7 +72,30 @@ public class ScrollHandler {
 
     // Return true if ANY pipe hits the bird.
     public boolean collides(Bird bird) {
+
+        if (!pipe1.isScored() && pipe1.getX() + (pipe1.getWidth() / 2) < bird.getX() + bird.getWidth()) {
+            addScore(1);
+            pipe1.setScored(true);
+            AssetLoader.coin.play();
+        }
+        else if (!pipe2.isScored() && pipe2.getX() + (pipe2.getWidth() / 2) < bird.getX() + bird.getWidth()) {
+            addScore(1);
+            pipe2.setScored(true);
+            AssetLoader.coin.play();
+
+        }
+        else if (!pipe3.isScored() && pipe3.getX() + (pipe3.getWidth() / 2) < bird.getX() + bird.getWidth()) {
+            addScore(1);
+            pipe3.setScored(true);
+            AssetLoader.coin.play();
+        }
+
         return (pipe1.collides(bird) || pipe2.collides(bird) || pipe3.collides(bird));
+    }
+
+
+    private void addScore(int increment) {
+        gameWorld.addScore(increment);
     }
 
     // The getters for our five instance variables
