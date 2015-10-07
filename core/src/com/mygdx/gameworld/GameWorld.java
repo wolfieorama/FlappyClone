@@ -2,6 +2,7 @@ package com.mygdx.gameworld;
 
 import com.mygdx.gameobjects.Bird;
 import com.mygdx.gameobjects.ScrollHandler;
+import com.mygdx.zbHelpers.AssetLoader;
 
 /**
  * Created by njerry on 7/27/15.
@@ -9,6 +10,8 @@ import com.mygdx.gameobjects.ScrollHandler;
 public class GameWorld {
     private Bird bird;
     private ScrollHandler scroller;
+
+    private boolean isAlive = true;
 
     public GameWorld (int midPointY) {
         bird = new Bird(33, midPointY -5, 17, 12);
@@ -21,8 +24,10 @@ public class GameWorld {
         scroller.update(delta);
 
         // Clean up on game over
-        if (scroller.collides(bird)) {
+        if (isAlive && scroller.collides(bird)) {
             scroller.stop();
+            AssetLoader.dead.play();
+            isAlive = false;
         }
     }
 
