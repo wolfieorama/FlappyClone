@@ -19,6 +19,11 @@ public class GameWorld {
     public void update (float delta) {
         bird.update(delta);
         scroller.update(delta);
+
+        // Clean up on game over
+        if (scroller.collides(bird)) {
+            scroller.stop();
+        }
     }
 
     public Bird getBird() {
