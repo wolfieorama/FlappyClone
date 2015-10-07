@@ -184,7 +184,7 @@ public class GameRenderer {
         }
 
         //convert integer into String
-        String score = myWorld.getScore() + "";
+        String score = "Score: " + myWorld.getScore();
 
         //draw shadow first
         AssetLoader.shadow.draw(batcher, score, (136 / 2) - (3 * score.length()), 12);
