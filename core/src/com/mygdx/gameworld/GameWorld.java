@@ -14,7 +14,6 @@ public class GameWorld {
     private ScrollHandler scroller;
 
     private Rectangle ground;
-    private Rectangle sky;
 
     private int score = 0;
 
@@ -24,8 +23,6 @@ public class GameWorld {
         scroller = new ScrollHandler(this, midPointY + 66);
 
         ground = new Rectangle(0, midPointY + 66, 136, 11);
-
-        sky = new Rectangle(0, 0,136, 1);
     }
 
     public void update (float delta) {
@@ -36,7 +33,7 @@ public class GameWorld {
         scroller.update(delta);
 
         // Clean up on game over
-        if (scroller.collides(bird) || Intersector.overlaps(bird.getBoundingCircle(), sky) && bird.isAlive) {
+        if (scroller.collides(bird) && bird.isAlive) {
             scroller.stop();
             bird.die();
             AssetLoader.dead.play();
