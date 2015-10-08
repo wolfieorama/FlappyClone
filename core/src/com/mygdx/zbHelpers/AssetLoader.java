@@ -1,6 +1,7 @@
 package com.mygdx.zbHelpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -26,6 +27,8 @@ public class AssetLoader {
 
     public static BitmapFont font;
     public static BitmapFont shadow;
+
+    public static Preferences prefs;
 
 
     public static void load() {
@@ -68,6 +71,22 @@ public class AssetLoader {
         font.getData().setScale(.25f, -.25f);
         shadow =  new BitmapFont(Gdx.files.internal("data/shadow.fnt"));
         shadow.getData().setScale(.25f, -.25f);
+
+        //create or retrieve existing preferences file
+        prefs = Gdx.app.getPreferences("ZombieBird");
+
+        //provide default high score of 0
+        if (!prefs.contains("highScore")) {
+            prefs.putInteger("highScore", 0);
+        }
+    }
+
+    public static void setHighScore(int val) {
+        prefs.putInteger("highScore", val);
+    }
+
+    public static int getHighScore() {
+        return prefs.getInteger("highScore");
     }
 
     public static void dispose() {
