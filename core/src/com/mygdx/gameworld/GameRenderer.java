@@ -183,6 +183,24 @@ public class GameRenderer {
                     1, 1, bird.getRotation());
         }
 
+        // TEMPORARY CODE! We will fix this section later:
+
+        if (myWorld.isReady()) {
+            // Draw shadow first
+            AssetLoader.shadow.draw(batcher, "Touch me", (136 / 2) - (42), 76);
+            // Draw text
+            AssetLoader.font.draw(batcher, "Touch me", (136 / 2) - (42 - 1), 75);
+        }
+        else {
+            if (myWorld.isGameOver()) {
+                AssetLoader.shadow.draw(batcher, "Game Over", 25, 56);
+                AssetLoader.font.draw(batcher, "Game Over", 24, 55);
+
+                AssetLoader.shadow.draw(batcher, "Try again?", 23, 76);
+                AssetLoader.font.draw(batcher, "Try again?", 24, 75);
+            }
+        }
+
         //convert integer into String
         String score = "Score: " + myWorld.getScore();
 
