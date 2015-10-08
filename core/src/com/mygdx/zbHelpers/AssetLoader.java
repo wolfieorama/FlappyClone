@@ -83,6 +83,7 @@ public class AssetLoader {
 
     public static void setHighScore(int val) {
         prefs.putInteger("highScore", val);
+        prefs.flush();
     }
 
     public static int getHighScore() {

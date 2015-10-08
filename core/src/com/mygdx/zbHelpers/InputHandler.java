@@ -40,7 +40,7 @@ public class InputHandler implements InputProcessor {
 
         myBird.onClick();
 
-        if (myWorld.isGameOver()) {
+        if (myWorld.isGameOver() || myWorld.isHighScore()) {
             //reset all variables and go to GameState.READ
             myWorld.restart();
         }
