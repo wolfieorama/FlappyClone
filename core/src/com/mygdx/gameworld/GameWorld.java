@@ -21,8 +21,10 @@ public class GameWorld {
 
     public int midPointY;
 
+    private float runTime = 0;
+
     public enum GameState {
-        READY, RUNNING, GAMEOVER, HIGHSCORE
+        MENU, READY, RUNNING, GAMEOVER, HIGHSCORE
     }
 
     public GameWorld (int midPointY) {
@@ -32,7 +34,7 @@ public class GameWorld {
 
         ground = new Rectangle(0, midPointY + 66, 136, 11);
 
-        currentState = GameState.READY;
+        currentState = GameState.MENU;
         this.midPointY = midPointY;
     }
 
@@ -64,6 +66,8 @@ public class GameWorld {
     }
 
     public void update(float delta) {
+        runTime += delta;
+
         switch (currentState) {
             case READY:
                 updateReady(delta);
@@ -77,7 +81,8 @@ public class GameWorld {
     }
 
     private void updateReady(float delta) {
-        //do nothing for now
+        bird.updateReady(runTime);
+        scroller.updateReady(delta);
     }
 
     public void restart() {
@@ -120,6 +125,21 @@ public class GameWorld {
         return currentState == GameState.HIGHSCORE;
     }
 
+    public int getMidPointY() {
+        return midPointY;
+    }
+
+    public void ready() {
+        currentState = GameState.READY;
+    }
+
+    public boolean isMenu() {
+        return currentState == GameState.MENU;
+    }
+
+    public boolean isRunning() {
+        return currentState == GameState.RUNNING;
+    }
 }
 
 

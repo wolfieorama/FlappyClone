@@ -20,6 +20,8 @@ public class Bird {
 
     public boolean isAlive;
 
+    private float originalY;
+
     public Bird(float x, float y, int width, int height) {
         this.width = width;
         this.height = height;
@@ -28,6 +30,7 @@ public class Bird {
         acceleration = new Vector2(0, 460);
         boundingCircle = new Circle();
         isAlive = true;
+        this.originalY = y;
     }
 
     public void update(float delta) {
@@ -119,6 +122,10 @@ public class Bird {
         acceleration.x = 0;
         acceleration.y = 460;
         isAlive = true;
+    }
+
+    public void updateReady(float runTime) {
+        position.y = 2 * (float) Math.sin(7 * runTime) + originalY;
     }
 }
 

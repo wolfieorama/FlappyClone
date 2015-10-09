@@ -127,7 +127,7 @@ public class GameRenderer {
                 pipe3.getWidth(), midPointY + 66 - (pipe3.getHeight() + 45));
     }
 
-    public void render(float runTime) {
+    public void render(float delta, float runTime) {
 
         // Fill the entire screen with black, to prevent potential flickering.
         Gdx.gl.glClearColor(0, 0, 0, 1);
