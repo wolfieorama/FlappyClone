@@ -51,13 +51,11 @@ public class GameRenderer {
     private TweenManager manager;
     private Value alpha = new Value();
 
-    private List<SimpleButton> menuButtons;
-
     public GameRenderer(GameWorld world, int gameHeight, int midPointY) {
         myWorld = world;
 
         this.midPointY = midPointY;
-        //this.menuButtons = ((InputHandler) Gdx.input.getInputProcessor()).getMenuButtons();
+
 
         cam = new OrthographicCamera();
         cam.setToOrtho(true, 136, gameHeight);
@@ -282,6 +280,7 @@ public class GameRenderer {
         } else if (myWorld.isHighScore()) {
             drawBird(runTime);
             drawScore();
+            drawRestart();
         }
 
         // End SpriteBatch
