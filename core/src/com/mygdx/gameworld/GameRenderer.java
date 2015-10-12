@@ -207,7 +207,7 @@ public class GameRenderer {
                 // Draw text
                 AssetLoader.font.draw(batcher, highScore, (136 / 2) - (3 * highScore.length() - 1), 127);
             }
-            else {
+            else if (myWorld.isHighScore()) {
                 AssetLoader.shadow.draw(batcher, "High Score!", 19, 56);
                 AssetLoader.font.draw(batcher, "High Score!", 18, 55);
             }
