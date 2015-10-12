@@ -14,7 +14,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = 'my-gdx-game'
+        appName = 'Flappy Zombie'
         gdxVersion = '1.6.4'
         roboVMVersion = '1.5.0'
         box2DLightsVersion = '1.4'
