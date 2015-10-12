@@ -15,7 +15,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class AssetLoader {
     public static Texture texture, logoTexture;
     public static TextureRegion bg, grass;
-    public static TextureRegion logo, zbLogo, playButtonUp, playButtonDown;
+    public static TextureRegion logo;
 
     public static Animation birdAnimation;
     public static TextureRegion bird, birdDown, birdUp;
@@ -41,14 +41,14 @@ public class AssetLoader {
 
         texture = new Texture(Gdx.files.internal("data/texture2.png"));
         texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+//
+//        playButtonUp = new TextureRegion(texture, 0, 83, 29, 16);
+//        playButtonDown = new TextureRegion(texture, 29, 83, 29, 16);
+//        playButtonUp.flip(false, true);
+//        playButtonDown.flip(false, true);
 
-        playButtonUp = new TextureRegion(texture, 0, 83, 29, 16);
-        playButtonDown = new TextureRegion(texture, 29, 83, 29, 16);
-        playButtonUp.flip(false, true);
-        playButtonDown.flip(false, true);
-
-        zbLogo = new TextureRegion(texture, 0, 55, 135, 24);
-        zbLogo.flip(false, true);
+//        zbLogo = new TextureRegion(texture, 0, 55, 135, 24);
+//        zbLogo.flip(false, true);
 
         bg = new TextureRegion(texture, 0, 0, 136, 43);
         bg.flip(false, true);
